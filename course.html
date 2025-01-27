@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل المقررات</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script>
+        // دالة لتسجيل المقرر
+        function registerCourse(courseCode, courseName, creditHours, day, location) {
+            const course = {
+                code: courseCode,
+                name: courseName,
+                hours: creditHours,
+                day: day,
+                location: location
+            };
+
+            // الحصول على المقررات المسجلة من localStorage
+            let registeredCourses = JSON.parse(localStorage.getItem('registeredCourses')) || [];
+
+            // إضافة المقرر إلى القائمة
+            registeredCourses.push(course);
+
+            // تخزين المقررات في localStorage
+            localStorage.setItem('registeredCourses', JSON.stringify(registeredCourses));
+
+            // عرض رسالة تأكيد
+            alert("تم تسجيل المقرر بنجاح!");
+
+            // إعادة تحميل الصفحة لتحديث القائمة
+            location.reload();
+        }
+
+        // دالة لعرض المقررات المسجلة
+        function loadRegisteredCourses() {
+            const registeredCourses = JSON.parse(localStorage.getItem('registeredCourses')) || [];
+            const tableBody = document.getElementById('coursesTableBody');
+            tableBody.innerHTML = '';
+
+            registeredCourses.forEach(course => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td class="py-2 px-4 border-b">${course.code}</td>
+                    <td class="py-2 px-4 border-b">${course.name}</td>
+                    <td class="py-2 px-4 border-b">${course.hours}</td>
+                    <td class="py-2 px-4 border-b">${course.day}</td>
+                    <td class="py-2 px-4 border-b">${course.location}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        // تحميل المقررات عند تحميل الصفحة
+        window.onload = loadRegisteredCourses;
+    </script>
+</head>
+<body class="flex min-h-screen bg-gray-100">
+    <!-- الشريط الجانبي -->
+    <div class="w-1/4 bg-gray-800 text-white p-6">
+        <div class="mb-8">
+            <img src="logo.png" alt="شعار الجامعة" class="mx-auto mb-4" style="width: 80px;">
+            <h2 class="text-center text-xl font-bold">جامعة الحدود الشمالية</h2>
+        </div>
+        <nav>
+            <ul>
+                <li class="mb-4">
+                    <a href="dashboard.html" class="block py-2 px-4 rounded hover:bg-gray-700">الصفحة الرئيسية</a>
+                </li>
+                <li class="mb-4">
+                    <a href="courses.html" class="block py-2 px-4 rounded bg-gray-700">تسجيل المقررات</a>
+                </li>
+                <li class="mb-4">
+                    <a href="table.html" class="block py-2 px-4 rounded hover:bg-gray-700">الجدول الدراسي</a>
+                </li>
+                <li class="mb-4">
+                    <a href="grades.html" class="block py-2 px-4 rounded hover:bg-gray-700">النتائج الأكاديمية</a>
+                </li>
+                <li class="mb-4">
+                    <a href="profile.html" class="block py-2 px-4 rounded hover:bg-gray-700">الملف الشخصي</a>
+                </li>
+                <li>
+                    <a href="login.html" class="block py-2 px-4 rounded hover:bg-gray-700">تسجيل الخروج</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- المحتوى الرئيسي -->
+    <div class="flex-1 p-6">
+        <h1 class="text-2xl font-bold mb-6">تسجيل المقررات</h1>
+
+        <!-- قائمة المقررات المتاحة -->
+        <div class="mt-6">
+            <h2 class="text-xl font-bold mb-4">المقررات المتاحة</h2>
+            <table class="min-w-full bg-white rounded shadow-md">
+                <thead>
+                    <tr>
+                        <th class="py-2 px-4 border-b">رمز المقرر</th>
+                        <th class="py-2 px-4 border-b">اسم المقرر</th>
+                        <th class="py-2 px-4 border-b">الساعة</th>
+                        <th class="py-2 px-4 border-b">اليوم</th>
+                        <th class="py-2 px-4 border-b">الموقع</th>
+                        <th class="py-2 px-4 border-b">إجراء</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="py-2 px-4 border-b">HRM100</td>
+                        <td class="py-2 px-4 border-b">مبادئ الإدارة</td>
+                        <td class="py-2 px-4 border-b">3</td>
+                        <td class="py-2 px-4 border-b">الأحد</td>
+                        <td class="py-2 px-4 border-b">المبنى A، القاعة 101</td>
+                        <td class="py-2 px-4 border-b">
+                            <button onclick="registerCourse('HRM100', 'مبادئ الإدارة', 3, 'الأحد', 'المبنى A، القاعة 101')" class="bg-green-600 text-white py-1 px-3 rounded hover:bg-green-700 transition">تسجيل</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="py-2 px-4 border-b">MIS100</td>
+                        <td class="py-2 px-4 border-b">نظم معلومات الإدارة</td>
+                        <td class="py-2 px-4 border-b">3</td>
+                        <td class="py-2 px-4 border-b">الإثنين</td>
+                        <td class="py-2 px-4 border-b">المبنى B، القاعة 202</td>
+                        <td class="py-2 px-4 border-b">
+                            <button onclick="registerCourse('MIS100', 'نظم معلومات الإدارة', 3, 'الإثنين', 'المبنى B، القاعة 202')" class="bg-green-600 text-white py-1 px-3 rounded hover:bg-green-700 transition">تسجيل</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="py-2 px-4 border-b">FINS211</td>
+                        <td class="py-2 px-4 border-b">مبادئ الإحصاء الوصفي</td>
+                        <td class="py-2 px-4 border-b">3</td>
+                        <td class="py-2 px-4 border-b">الثلاثاء</td>
+                        <td class="py-2 px-4 border-b">المبنى C، القاعة 303</td>
+                        <td class="py-2 px-4 border-b">
+                            <button onclick="registerCourse('FINS211', 'مبادئ الإحصاء الوصفي', 3, 'الثلاثاء', 'المبنى C، القاعة 303')" class="bg-green-600 text-white py-1 px-3 rounded hover:bg-green-700 transition">تسجيل</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="py-2 px-4 border-b">BUTC201</td>
+                        <td class="py-2 px-4 border-b">تطبيقات الحاسوب في الأعمال</td>
+                        <td class="py-2 px-4 border-b">3</td>
+                        <td class="py-2 px-4 border-b">الأربعاء</td>
+                        <td class="py-2 px-4 border-b">المبنى D، القاعة 404</td>
+                        <td class="py-2 px-4 border-b">
+                            <button onclick="registerCourse('BUTC201', 'تطبيقات الحاسوب في الأعمال', 3, 'الأربعاء', 'المبنى D، القاعة 404')" class="bg-green-600 text-white py-1 px-3 rounded hover:bg-green-700 transition">تسجيل</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="py-2 px-4 border-b">MIS201</td>
+                        <td class="py-2 px-4 border-b">أخلاقيات نظم المعلومات</td>
+                        <td class="py-2 px-4 border-b">3</td>
+                        <td class="py-2 px-4 border-b">الخميس</td>
+                        <td class="py-2 px-4 border-b">المبنى E، القاعة 505</td>
+                        <td class="py-2 px-4 border-b">
+                            <button onclick="registerCourse('MIS201', 'أخلاقيات نظم المعلومات', 3, 'الخميس', 'المبنى E، القاعة 505')" class="bg-green-600 text-white py-1 px-3 rounded hover:bg-green-700 transition">تسجيل</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

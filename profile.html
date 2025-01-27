@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الملف الشخصي</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .card {
+            border: 2px solid #1D4ED8;
+            padding: 20px;
+            width: 350px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .card .university-logo {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .card img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .card h2, .card p {
+            margin-bottom: 10px;
+        }
+
+        .qr-code {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .card-body {
+            margin-top: 60px;
+        }
+    </style>
+</head>
+<body class="flex min-h-screen bg-gray-100">
+    <!-- الشريط الجانبي -->
+    <div class="w-1/4 bg-gray-800 text-white p-6">
+        <div class="mb-8">
+            <img src="logo.png" alt="شعار الجامعة" class="mx-auto mb-4" style="width: 80px;">
+            <h2 class="text-center text-xl font-bold">جامعة الحدود الشمالية</h2>
+        </div>
+        <nav>
+            <ul>
+                <li class="mb-4">
+                    <a href="dashboard.html" class="block py-2 px-4 rounded hover:bg-gray-700">الصفحة الرئيسية</a>
+                </li>
+                <li class="mb-4">
+                    <a href="course.html" class="block py-2 px-4 rounded hover:bg-gray-700">تسجيل المقررات</a>
+                </li>
+                <li class="mb-4">
+                    <a href="table.html" class="block py-2 px-4 rounded hover:bg-gray-700">الجدول الدراسي</a>
+                </li>
+                <li class="mb-4">
+                    <a href="grades.html" class="block py-2 px-4 rounded hover:bg-gray-700">النتائج الأكاديمية</a>
+                </li>
+                <li class="mb-4">
+                    <a href="profile.html" class="block py-2 px-4 rounded bg-gray-700">الملف الشخصي</a>
+                </li>
+                <li>
+                    <a href="login.html" class="block py-2 px-4 rounded hover:bg-gray-700">تسجيل الخروج</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- المحتوى الرئيسي -->
+    <div class="flex-1 p-6">
+        <h1 class="text-2xl font-bold mb-6">الملف الشخصي</h1>
+        
+        <!-- بطاقة الطالب -->
+        <div class="card mx-auto">
+            <!-- شعار الجامعة في الجزء العلوي -->
+            <img src="logo.png" alt="شعار الجامعة" class="university-logo">
+
+            <!-- محتوى البطاقة -->
+            <div class="card-body">
+                <div class="flex items-center mb-4">
+                    <img src="studentimage.jpg" alt="صورة الطالب" class="mr-4">
+                    <div>
+                        <h2 class="text-xl font-semibold">بدور احمد الادهم العنزي</h2>
+                        <p class="text-sm text-gray-600">رقم الطالب: 499065862</p>
+                    </div>
+                </div>
+                <p><strong>التخصص:</strong> نظم معلومات ادارية</p>
+                <p><strong>الكلية:</strong> كلية الاعمال</p>
+                
+
+                <!-- QR Code (اختياري) -->
+                <div class="qr-code">
+                    <img src="qr.png" alt="QR Code" class="w-20 h-20">
+                </div>
+                
+                <div class="mt-6 flex justify-between">
+                    <button id="downloadCard" class="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">
+                        تنزيل البطاقة
+                    </button>
+                    <button onclick="window.print()" class="bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700">
+                        طباعة البطاقة
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script لتنزيل البطاقة كصورة -->
+    <script>
+        document.getElementById("downloadCard").addEventListener("click", function() {
+            // تحويل البطاقة إلى صورة باستخدام html2canvas
+            html2canvas(document.querySelector(".card")).then(canvas => {
+                const link = document.createElement("a");
+                link.download = 'بطاقة_الطالب.png';
+                link.href = canvas.toDataURL();
+                link.click();
+            });
+        });
+    </script>
+
+    <!-- تحميل مكتبة html2canvas -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+</body>
+</html>

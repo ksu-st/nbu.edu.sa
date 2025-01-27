@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: url('background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100vh;
+            color: #3e3c3c;
+        }
+
+        .main-logo {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .main-logo img {
+            width: 150px;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 11000px;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .left, .right, .nafath {
+            flex: 1;
+            padding: 20px;
+            min-width: 300px;
+        }
+
+        .left {
+            background-color: #f8f8f8;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .left img {
+            width: 80px;
+            margin-bottom: 20px;
+        }
+
+        .left button {
+            background-color: #007b3e;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .left button:hover {
+            background-color: #005f2d;
+        }
+
+        .nafath {
+            background-color: #e6f4e8;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-right: 2px solid #007b3e;
+        }
+
+        .nafath img {
+            width: 80px;
+            margin-bottom: 20px;
+        }
+
+        .nafath h1 {
+            font-size: 20px;
+            color: #007b3e;
+            margin-bottom: 15px;
+        }
+
+        .nafath button {
+            background-color: #007b3e;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .nafath button:hover {
+            background-color: #005f2d;
+        }
+
+        .right {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .right img {
+            width: 80px;
+            margin-bottom: 20px;
+        }
+
+        .right h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .right p {
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .right button {
+            background-color: #007b3e;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .right button:hover {
+            background-color: #005f2d;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-logo">
+        <img src="logo.png" alt="الشعار الرئيسي">
+    </div>
+    <div class="container">
+        <div class="nafath">
+            <img src="alogo.png" alt="شعار نفاذ">
+            <h1>تسجيل الدخول عبر نفاذ</h1>
+            <p>يمكنك تسجيل الدخول باستخدام بياناتك الخاصة بمركز المعلومات الوطني.</p>
+            <a href="https://sso.sa/" target="_blank">
+                <button>الدخول عبر نفاذ</button>
+            </a>
+        </div>
+        <div class="right">
+            <img src="logo.png" alt="شعار الدخول الموحد">
+            <h1>الدخول من خلال نظام الدخول الموحد</h1>
+            <p>يمكنك الدخول إلى حسابك الجامعي من خلال نظام الدخول الموحد باستخدام بيانات الدخول الخاصة بك.</p>
+            <a href="login.html">
+                <button>تسجيل الدخول عن طريق نظام الدخول الموحد</button>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

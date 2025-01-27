@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الجدول الدراسي</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script>
+        // دالة لعرض المقررات المسجلة
+        function loadRegisteredCourses() {
+            const registeredCourses = JSON.parse(localStorage.getItem('registeredCourses')) || [];
+            const tableBody = document.getElementById('coursesTableBody');
+            tableBody.innerHTML = '';
+
+            registeredCourses.forEach(course => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td class="py-2 px-4 border-b">${course.code}</td>
+                    <td class="py-2 px-4 border-b">${course.name}</td>
+                    <td class="py-2 px-4 border-b">${course.hours}</td>
+                    <td class="py-2 px-4 border-b">${course.days}</td>
+                    <td class="py-2 px-4 border-b">${course.location}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        // تحميل المقررات عند تحميل الصفحة
+        window.onload = loadRegisteredCourses;
+    </script>
+</head>
+<body class="flex min-h-screen bg-gray-100">
+    <!-- الشريط الجانبي (نفس الشريط الجانبي من الصفحة السابقة) -->
+    <div class="w-1/4 bg-gray-800 text-white p-6">
+        <div class="mb-8">
+            <img src="logo.png" alt="شعار الجامعة" class="mx-auto mb-4" style="width: 80px;">
+            <h2 class="text-center text-xl font-bold">جامعة الحدود الشمالية</h2>
+        </div>
+        <nav>
+            <ul>
+                <li class="mb-4">
+                    <a href="dashboard.html" class="block py-2 px-4 rounded hover:bg-gray-700">الصفحة الرئيسية</a>
+                </li>
+                <li class="mb-4">
+                    <a href="course.html" class="block py-2 px-4 rounded hover:bg-gray-700">تسجيل المقررات</a>
+                </li>
+                <li class="mb-4">
+                    <a href="table.html" class="block py-2 px-4 rounded bg-gray-700">الجدول الدراسي</a>
+                </li>
+                <li class="mb-4">
+                    <a href="grades.html" class="block py-2 px-4 rounded hover:bg-gray-700">النتائج الأكاديمية</a>
+                </li>
+                <li class="mb-4">
+                    <a href="profile.html" class="block py-2 px-4 rounded hover:bg-gray-700">الملف الشخصي</a>
+                </li>
+                <li>
+                    <a href="login.html" class="block py-2 px-4 rounded hover:bg-gray-700">تسجيل الخروج</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- المحتوى الرئيسي -->
+    <div class="flex-1 p-6">
+        <h1 class="text-2xl font-bold mb-6">الجدول الدراسي</h1>
+        <table class="min-w-full bg-white rounded shadow-md">
+            <thead>
+                <tr>
+                    <th class="py-2 px-4 border-b">رمز المقرر</th>
+                    <th class="py-2 px-4 border-b">اسم المقرر</th>
+                    <th class="py-2 px-4 border-b">الساعة</th>
+                    <th class="py-2 px-4 border-b">أيام الأسبوع</th>
+                    <th class="py-2 px-4 border-b">الموقع</th>
+                </tr>
+            </thead>
+            <tbody id="coursesTableBody">
+                <!-- سيتم عرض المقررات هنا بعد تحميلها -->
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
